@@ -213,9 +213,7 @@ const AdminDashboard = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           back_odds: edit.back_odds,
-          back_size: edit.back_size,
-          lay_odds: edit.lay_odds,
-          lay_size: edit.lay_size
+          lay_odds: edit.lay_odds
         })
       });
       const data = await res.json();
@@ -303,10 +301,7 @@ const AdminDashboard = () => {
                 <th style={{ padding: 12 }}>Current Back Size</th>
                 <th style={{ padding: 12 }}>Current Lay Odds</th>
                 <th style={{ padding: 12 }}>Current Lay Size</th>
-                <th style={{ padding: 12 }}>Updated Back Odds</th>
-                <th style={{ padding: 12 }}>Updated Back Size</th>
                 <th style={{ padding: 12 }}>Updated Lay Odds</th>
-                <th style={{ padding: 12 }}>Updated Lay Size</th>
                 <th style={{ padding: 12 }}>Update</th>
               </tr>
             </thead>
@@ -328,16 +323,7 @@ const AdminDashboard = () => {
                     <td style={{ padding: 10 }}>{currentLayOdds}</td>
                     <td style={{ padding: 10 }}>{currentLaySize ? (parseFloat(currentLaySize) * 20).toFixed(2) : '0'}</td>
                     <td style={{ padding: 10 }}>
-                      <input type="number" value={edit.back_odds ?? odds.back_odds ?? ''} onChange={e => handleOddsEdit(runner.id, 'back_odds', e.target.value)} style={{ width: 80 }} />
-                    </td>
-                    <td style={{ padding: 10 }}>
-                      <input type="number" value={edit.back_size ?? odds.back_size ?? ''} onChange={e => handleOddsEdit(runner.id, 'back_size', e.target.value)} style={{ width: 80 }} />
-                    </td>
-                    <td style={{ padding: 10 }}>
-                      <input type="number" value={edit.lay_odds ?? odds.lay_odds ?? ''} onChange={e => handleOddsEdit(runner.id, 'lay_odds', e.target.value)} style={{ width: 80 }} />
-                    </td>
-                    <td style={{ padding: 10 }}>
-                      <input type="number" value={edit.lay_size ?? odds.lay_size ?? ''} onChange={e => handleOddsEdit(runner.id, 'lay_size', e.target.value)} style={{ width: 80 }} />
+                      <input type="number" value={edit.lay_odds ?? odds.lay_odds ?? ''} onChange={e => handleOddsEdit(runner.id, 'lay_odds', e.target.value)} style={{ width: 80, border: '1px solid black', borderRadius: 4, padding: '4px 8px' }} />
                     </td>
                     <td style={{ padding: 10 }}>
                       <button onClick={() => handleUpdateOdds(selectedMarket, runner.id)} style={{ background: '#1bb6c9', color: '#fff', border: 'none', borderRadius: 6, padding: '6px 16px', fontWeight: 'bold', cursor: 'pointer' }}>Update</button>

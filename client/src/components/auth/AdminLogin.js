@@ -6,10 +6,17 @@ import 'react-toastify/dist/ReactToastify.css';
 const AdminLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: 'admin@admin.com',
-    password: 'Password@360'
+    email: '',
+    password: ''
   });
   const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,8 +51,9 @@ const AdminLogin = () => {
               name="email"
               type="email"
               value={formData.email}
-              readOnly
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-gray-100 cursor-not-allowed"
+              onChange={handleChange}
+              required
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Email address"
             />
           </div>
@@ -54,8 +62,9 @@ const AdminLogin = () => {
               name="password"
               type="password"
               value={formData.password}
-              readOnly
-              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm bg-gray-100 cursor-not-allowed"
+              onChange={handleChange}
+              required
+              className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               placeholder="Password"
             />
           </div>
